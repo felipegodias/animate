@@ -1,5 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using Animate.Core.Concretes;
+﻿using Animate.Core.Concretes;
 using Animate.Core.Controllers;
 using Animate.Core.Interfaces;
 using UnityEngine;
@@ -17,6 +16,7 @@ namespace Animate.Core {
                 if (tweenController != null) {
                     return tweenController;
                 }
+
                 GameObject gameObject = new GameObject(nameof(TweenController));
                 Object.DontDestroyOnLoad(gameObject);
                 tweenController = gameObject.AddComponent<TweenController>();

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Animate.Core.Controllers {
 
-    internal class TweenController : MonoBehaviour, ITweenController {
+    internal sealed class TweenController : MonoBehaviour, ITweenController {
 
         private readonly LinkedList<ITweenRuntime> runningList = new LinkedList<ITweenRuntime>();
 
