@@ -43,6 +43,9 @@
     <Compile Include="Src\Animate.cs" />
     <Compile Include="Src\Concretes\TweenRuntime.cs" />
     <Compile Include="Src\Controllers\TweenController.cs" />
+    <Compile Include="Src\Events\OnTweenBegin.cs" />
+    <Compile Include="Src\Events\OnTweenEnd.cs" />
+    <Compile Include="Src\Events\OnTweenUpdate.cs" />
     <Compile Include="Src\Interfaces\ITween.cs" />
     <Compile Include="Src\Interfaces\ITweenController.cs" />
     <Compile Include="Src\Interfaces\ITweenData.cs" />
