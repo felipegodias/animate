@@ -1,18 +1,44 @@
-﻿using Animate.Core.Interfaces;
+﻿using System.Collections.Generic;
+using Animate.Core.Events;
+using Animate.Core.Interfaces;
 using Animate.Core.Proxies;
 
 namespace Animate.Core.Concretes {
 
     internal sealed class TweenRuntime : ITweenData, ITweenRuntime {
 
-        private bool isCompleted;
+        private readonly IList<OnTweenBegin> onTweenBegins;
 
-        private ITween proxy;
+        private readonly IList<OnTweenEnd> onTweenEnds;
+
+        private readonly IList<OnTweenUpdate> onTweenUpdates;
+
+        private readonly ITween proxy;
+
+        private bool isCompleted;
 
         private float time;
 
         public TweenRuntime() {
+            this.onTweenBegins = new List<OnTweenBegin>();
+            this.onTweenUpdates = new List<OnTweenUpdate>();
+            this.onTweenEnds = new List<OnTweenEnd>();
             this.proxy = new TweenProxy(this);
+        }
+
+        public ITweenData AddOnTweenBegin(OnTweenBegin onTweenBegin) {
+            this.onTweenBegins.Add(onTweenBegin);
+            return this;
+        }
+
+        public ITweenData AddOnTweenUpdate(OnTweenUpdate onTweenUpdate) {
+            this.onTweenUpdates.Add(onTweenUpdate);
+            return this;
+        }
+
+        public ITweenData AddOnTweenEnd(OnTweenEnd onTweenEnd) {
+            this.onTweenEnds.Add(onTweenEnd);
+            return this;
         }
 
         public float Time => this.time;
