@@ -14,6 +14,12 @@ namespace Animate.Core.Interfaces {
 
         /// <summary>
         /// </summary>
+        /// <param name="delay"></param>
+        /// <returns></returns>
+        ITweenData SetDelay(float delay);
+
+        /// <summary>
+        /// </summary>
         /// <param name="onTweenBegin"></param>
         /// <returns></returns>
         ITweenData AddOnTweenBegin(AnimateEvent onTweenBegin);
