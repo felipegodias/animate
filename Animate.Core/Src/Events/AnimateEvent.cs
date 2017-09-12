@@ -5,6 +5,6 @@ namespace Animate.Core.Events {
     /// <summary>
     /// </summary>
     /// <param name="tween"></param>
-    public delegate void OnTweenUpdate(ITween tween);
+    public delegate void AnimateEvent(ITween tween);
 
 }

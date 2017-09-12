@@ -1,8 +1,8 @@
-﻿namespace Animate.Core.Interfaces {
+﻿namespace Animate.Core.Internal.Interfaces {
 
     /// <summary>
     /// </summary>
-    public interface ITweenController {
+    internal interface ITweenController {
 
         /// <summary>
         /// </summary>

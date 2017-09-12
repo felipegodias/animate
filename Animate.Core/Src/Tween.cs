@@ -1,13 +1,14 @@
-﻿using Animate.Core.Concretes;
-using Animate.Core.Controllers;
-using Animate.Core.Interfaces;
+﻿using Animate.Core.Interfaces;
+using Animate.Core.Internal.Concretes;
+using Animate.Core.Internal.Controllers;
+using Animate.Core.Internal.Interfaces;
 using UnityEngine;
 
 namespace Animate.Core {
 
     /// <summary>
     /// </summary>
-    public static class Animate {
+    public static class Tween {
 
         private static ITweenController tweenController;
 
@@ -27,7 +28,7 @@ namespace Animate.Core {
         /// <summary>
         /// </summary>
         /// <returns></returns>
-        public static ITweenData Play() {
+        public static ITweenData New() {
             TweenRuntime tweenRuntime = new TweenRuntime();
             TweenController.Add(tweenRuntime);
             return tweenRuntime;

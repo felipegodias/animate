@@ -1,8 +1,8 @@
 ﻿using Animate.Core.Interfaces;
 
-namespace Animate.Core.Proxies {
+namespace Animate.Core.Internal.Proxies {
 
-    public class TweenProxy : ITween {
+    internal sealed class TweenProxy : ITween {
 
         private readonly ITween tween;
 
@@ -11,6 +11,10 @@ namespace Animate.Core.Proxies {
         }
 
         public float Time => this.tween.Time;
+
+        public float Progress => this.tween.Progress;
+
+        public float Evaluation => this.tween.Evaluation;
 
     }
 

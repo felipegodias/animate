@@ -8,6 +8,14 @@
         /// </summary>
         float Time { get; }
 
+        /// <summary>
+        /// </summary>
+        float Progress { get; }
+
+        /// <summary>
+        /// </summary>
+        float Evaluation { get; }
+
     }
 
 }

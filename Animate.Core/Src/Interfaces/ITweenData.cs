@@ -16,19 +16,19 @@ namespace Animate.Core.Interfaces {
         /// </summary>
         /// <param name="onTweenBegin"></param>
         /// <returns></returns>
-        ITweenData AddOnTweenBegin(OnTweenBegin onTweenBegin);
+        ITweenData AddOnTweenBegin(AnimateEvent onTweenBegin);
 
         /// <summary>
         /// </summary>
         /// <param name="onTweenUpdate"></param>
         /// <returns></returns>
-        ITweenData AddOnTweenUpdate(OnTweenUpdate onTweenUpdate);
+        ITweenData AddOnTweenUpdate(AnimateEvent onTweenUpdate);
 
         /// <summary>
         /// </summary>
         /// <param name="onTweenEnd"></param>
         /// <returns></returns>
-        ITweenData AddOnTweenEnd(OnTweenEnd onTweenEnd);
+        ITweenData AddOnTweenEnd(AnimateEvent onTweenEnd);
 
     }
 

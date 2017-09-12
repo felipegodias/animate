@@ -40,17 +40,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Src\Animate.cs" />
-    <Compile Include="Src\Concretes\TweenRuntime.cs" />
-    <Compile Include="Src\Controllers\TweenController.cs" />
-    <Compile Include="Src\Events\OnTweenBegin.cs" />
-    <Compile Include="Src\Events\OnTweenEnd.cs" />
-    <Compile Include="Src\Events\OnTweenUpdate.cs" />
+    <Compile Include="Src\Tween.cs" />
+    <Compile Include="Src\Internal\Collections\EventList.cs" />
+    <Compile Include="Src\Internal\Collections\IEventList.cs" />
+    <Compile Include="Src\Internal\Concretes\TweenRuntime.cs" />
+    <Compile Include="Src\Internal\Controllers\TweenController.cs" />
+    <Compile Include="Src\Events\AnimateEvent.cs" />
     <Compile Include="Src\Interfaces\ITween.cs" />
-    <Compile Include="Src\Interfaces\ITweenController.cs" />
+    <Compile Include="Src\Internal\Interfaces\ITweenController.cs" />
     <Compile Include="Src\Interfaces\ITweenData.cs" />
-    <Compile Include="Src\Interfaces\ITweenRuntime.cs" />
-    <Compile Include="Src\Proxies\TweenProxy.cs" />
+    <Compile Include="Src\Internal\Interfaces\ITweenRuntime.cs" />
+    <Compile Include="Src\Internal\Proxies\TweenProxy.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
