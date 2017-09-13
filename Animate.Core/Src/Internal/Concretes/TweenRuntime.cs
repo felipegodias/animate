@@ -19,7 +19,9 @@ namespace Animate.Core.Internal.Concretes {
 
         private float time;
 
-        private float delay;
+        private float startDelay;
+
+        private float loopDelay;
 
         private uint loopCount;
 
@@ -48,7 +50,9 @@ namespace Animate.Core.Internal.Concretes {
 
         public float Time => this.time;
 
-        public float Delay => this.delay;
+        public float StartDelay => this.startDelay;
+
+        public float LoopDelay => this.loopDelay;
 
         public uint LoopCount => this.loopCount;
 
@@ -57,8 +61,13 @@ namespace Animate.Core.Internal.Concretes {
             return this;
         }
 
-        public ITweenData SetDelay(float delay) {
-            this.delay = delay;
+        public ITweenData SetStartDelay(float startDelay) {
+            this.startDelay = startDelay;
+            return this;
+        }
+
+        public ITweenData SetLoopDelay(float loopDelay) {
+            this.loopDelay = loopDelay;
             return this;
         }
 
@@ -92,11 +101,11 @@ namespace Animate.Core.Internal.Concretes {
 
             this.elapsedTime += deltaTime;
 
-            if (this.elapsedTime <= this.delay) {
+            if (this.elapsedTime <= this.startDelay + this.time * this.elapsedLoops + this.loopDelay * this.elapsedLoops) {
                 return;
             }
 
-            float normalizedTime = this.elapsedTime - this.delay;
+            float normalizedTime = this.elapsedTime - (this.startDelay + this.elapsedLoops * this.loopDelay);
 
             uint currentLoopIndex = (uint) Mathf.FloorToInt(normalizedTime / this.time);
 

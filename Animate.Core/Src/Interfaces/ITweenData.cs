@@ -12,7 +12,11 @@ namespace Animate.Core.Interfaces {
 
         /// <summary>
         /// </summary>
-        float Delay { get; }
+        float StartDelay { get; }
+
+        /// <summary>
+        /// </summary>
+        float LoopDelay { get; }
 
         /// <summary>
         /// </summary>
@@ -28,7 +32,13 @@ namespace Animate.Core.Interfaces {
         /// </summary>
         /// <param name="delay"></param>
         /// <returns></returns>
-        ITweenData SetDelay(float delay);
+        ITweenData SetStartDelay(float startDelay);
+
+        /// <summary>
+        /// </summary>
+        /// <param name="loopDelay"></param>
+        /// <returns></returns>
+        ITweenData SetLoopDelay(float loopDelay);
 
         /// <summary>
         /// </summary>
