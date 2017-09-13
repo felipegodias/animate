@@ -10,8 +10,6 @@ namespace Animate.Core.Internal.Proxies {
             this.tween = tween;
         }
 
-        public float Time => this.tween.Time;
-
         public float Progress => this.tween.Progress;
 
         public float Evaluation => this.tween.Evaluation;
