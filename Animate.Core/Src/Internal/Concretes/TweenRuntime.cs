@@ -26,9 +26,9 @@ namespace Animate.Core.Internal.Concretes {
 
         private float progress;
 
-        private bool isCompleted;
-
         private bool isStarted;
+
+        private bool isCompleted;
 
         public TweenRuntime() {
             this.onTweenBegins = new EventList();
@@ -42,6 +42,8 @@ namespace Animate.Core.Internal.Concretes {
         public float Evaluation => this.evaluation;
 
         public float Time => this.time;
+
+        public float Delay => this.delay;
 
         public ITweenData SetTime(float time) {
             this.time = time;

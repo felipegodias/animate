@@ -11,6 +11,11 @@ namespace Animate.Core.Interfaces {
         float Time { get; }
 
         /// <summary>
+        /// 
+        /// </summary>
+        float Delay { get; }
+
+        /// <summary>
         /// </summary>
         /// <param name="time"></param>
         /// <returns></returns>
