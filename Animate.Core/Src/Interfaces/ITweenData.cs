@@ -62,9 +62,21 @@ namespace Animate.Core.Interfaces {
 
         /// <summary>
         /// </summary>
+        /// <param name="onTweenLoopBegin"></param>
+        /// <returns></returns>
+        ITweenData AddOnTweenLoopBegin(AnimateEvent onTweenLoopBegin);
+
+        /// <summary>
+        /// </summary>
         /// <param name="onTweenUpdate"></param>
         /// <returns></returns>
         ITweenData AddOnTweenUpdate(AnimateEvent onTweenUpdate);
+
+        /// <summary>
+        /// </summary>
+        /// <param name="onTweenLoopEnd"></param>
+        /// <returns></returns>
+        ITweenData AddOnTweenLoopEnd(AnimateEvent onTweenLoopEnd);
 
         /// <summary>
         /// </summary>

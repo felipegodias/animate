@@ -11,7 +11,11 @@ namespace Animate.Core.Internal.Concretes {
 
         private readonly IEventList onTweenBegin;
 
+        private readonly IEventList onTweenLoopBegin;
+
         private readonly IEventList onTweenUpdate;
+
+        private readonly IEventList onTweenLoopEnd;
 
         private readonly IEventList onTweenEnd;
 
@@ -37,11 +41,15 @@ namespace Animate.Core.Internal.Concretes {
 
         private bool isStarted;
 
+        private bool hasLoopBegan;
+
         private bool isCompleted;
 
         public TweenRuntime() {
             this.onTweenBegin = new EventList();
+            this.onTweenLoopBegin = new EventList();
             this.onTweenUpdate = new EventList();
+            this.onTweenLoopEnd = new EventList();
             this.onTweenEnd = new EventList();
             this.proxy = new TweenProxy(this);
         }
@@ -90,8 +98,18 @@ namespace Animate.Core.Internal.Concretes {
             return this;
         }
 
+        public ITweenData AddOnTweenLoopBegin(AnimateEvent onTweenLoopBegin) {
+            this.onTweenLoopBegin.Add(onTweenLoopBegin);
+            return this;
+        }
+
         public ITweenData AddOnTweenUpdate(AnimateEvent onTweenUpdate) {
             this.onTweenUpdate.Add(onTweenUpdate);
+            return this;
+        }
+
+        public ITweenData AddOnTweenLoopEnd(AnimateEvent onTweenLoopEnd) {
+            this.onTweenLoopEnd.Add(onTweenLoopEnd);
             return this;
         }
 
@@ -116,6 +134,13 @@ namespace Animate.Core.Internal.Concretes {
                 return;
             }
 
+            if (!this.hasLoopBegan) {
+                this.hasLoopBegan = true;
+                this.progress = 0;
+                this.evaluation = this.elapsedLoops % 2 == 0 && this.loopType == LoopType.PingPong ? 0 : 1;
+                this.onTweenLoopBegin.Invoke(this.proxy);
+            }
+
             float normalizedTime = this.elapsedTime - (this.startDelay + this.elapsedLoops * this.loopDelay);
 
             uint currentLoopIndex = (uint) Mathf.FloorToInt(normalizedTime / this.time);
@@ -133,6 +158,11 @@ namespace Animate.Core.Internal.Concretes {
             }
 
             this.onTweenUpdate.Invoke(this.proxy);
+
+            if (this.elapsedLoops != currentLoopIndex) {
+                this.onTweenLoopEnd.Invoke(this.proxy);
+                this.hasLoopBegan = false;
+            }
 
             this.elapsedLoops = currentLoopIndex;
 
