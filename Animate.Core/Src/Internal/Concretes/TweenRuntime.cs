@@ -101,7 +101,9 @@ namespace Animate.Core.Internal.Concretes {
 
             this.elapsedTime += deltaTime;
 
-            if (this.elapsedTime <= this.startDelay + this.time * this.elapsedLoops + this.loopDelay * this.elapsedLoops) {
+            float timeForLoops = this.time * this.elapsedLoops;
+            float loopDelayForLoops = this.loopDelay * this.elapsedLoops;
+            if (this.elapsedTime <= this.startDelay + timeForLoops + loopDelayForLoops) {
                 return;
             }
 
