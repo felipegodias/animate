@@ -9,11 +9,11 @@ namespace Animate.Core.Internal.Concretes {
 
     internal sealed class TweenRuntime : ITween, ITweenData, ITweenRuntime {
 
-        private readonly IEventList onTweenBegins;
+        private readonly IEventList onTweenBegin;
 
-        private readonly IEventList onTweenEnds;
+        private readonly IEventList onTweenUpdate;
 
-        private readonly IEventList onTweenUpdates;
+        private readonly IEventList onTweenEnd;
 
         private readonly ITween proxy;
 
@@ -40,9 +40,9 @@ namespace Animate.Core.Internal.Concretes {
         private bool isCompleted;
 
         public TweenRuntime() {
-            this.onTweenBegins = new EventList();
-            this.onTweenUpdates = new EventList();
-            this.onTweenEnds = new EventList();
+            this.onTweenBegin = new EventList();
+            this.onTweenUpdate = new EventList();
+            this.onTweenEnd = new EventList();
             this.proxy = new TweenProxy(this);
         }
 
@@ -86,17 +86,17 @@ namespace Animate.Core.Internal.Concretes {
         }
 
         public ITweenData AddOnTweenBegin(AnimateEvent onTweenBegin) {
-            this.onTweenBegins.Add(onTweenBegin);
+            this.onTweenBegin.Add(onTweenBegin);
             return this;
         }
 
         public ITweenData AddOnTweenUpdate(AnimateEvent onTweenUpdate) {
-            this.onTweenUpdates.Add(onTweenUpdate);
+            this.onTweenUpdate.Add(onTweenUpdate);
             return this;
         }
 
         public ITweenData AddOnTweenEnd(AnimateEvent onTweenEnd) {
-            this.onTweenEnds.Add(onTweenEnd);
+            this.onTweenEnd.Add(onTweenEnd);
             return this;
         }
 
@@ -105,7 +105,7 @@ namespace Animate.Core.Internal.Concretes {
         public void Update(float deltaTime) {
             if (!this.isStarted) {
                 this.isStarted = true;
-                this.onTweenBegins.Invoke(this.proxy);
+                this.onTweenBegin.Invoke(this.proxy);
             }
 
             this.elapsedTime += deltaTime;
@@ -132,7 +132,7 @@ namespace Animate.Core.Internal.Concretes {
                 this.evaluation = this.progress;
             }
 
-            this.onTweenUpdates.Invoke(this.proxy);
+            this.onTweenUpdate.Invoke(this.proxy);
 
             this.elapsedLoops = currentLoopIndex;
 
@@ -141,7 +141,7 @@ namespace Animate.Core.Internal.Concretes {
             }
 
             this.isCompleted = true;
-            this.onTweenEnds.Invoke(this.proxy);
+            this.onTweenEnd.Invoke(this.proxy);
         }
 
     }
