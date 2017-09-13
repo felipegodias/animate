@@ -4,7 +4,11 @@ namespace Animate.Core.Interfaces {
 
     /// <summary>
     /// </summary>
-    public interface ITweenData : ITween {
+    public interface ITweenData {
+
+        /// <summary>
+        /// </summary>
+        float Time { get; }
 
         /// <summary>
         /// </summary>

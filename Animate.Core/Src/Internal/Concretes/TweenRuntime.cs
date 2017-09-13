@@ -6,7 +6,7 @@ using Animate.Core.Internal.Proxies;
 
 namespace Animate.Core.Internal.Concretes {
 
-    internal sealed class TweenRuntime : ITweenData, ITweenRuntime {
+    internal sealed class TweenRuntime : ITween, ITweenData, ITweenRuntime {
 
         private readonly IEventList onTweenBegins;
 
@@ -37,11 +37,11 @@ namespace Animate.Core.Internal.Concretes {
             this.proxy = new TweenProxy(this);
         }
 
-        public float Time => this.time;
-
         public float Progress => this.progress;
 
         public float Evaluation => this.evaluation;
+
+        public float Time => this.time;
 
         public ITweenData SetTime(float time) {
             this.time = time;
