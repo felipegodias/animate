@@ -11,9 +11,12 @@ namespace Animate.Core.Interfaces {
         float Time { get; }
 
         /// <summary>
-        /// 
         /// </summary>
         float Delay { get; }
+
+        /// <summary>
+        /// </summary>
+        uint LoopCount { get; }
 
         /// <summary>
         /// </summary>
@@ -26,6 +29,12 @@ namespace Animate.Core.Interfaces {
         /// <param name="delay"></param>
         /// <returns></returns>
         ITweenData SetDelay(float delay);
+
+        /// <summary>
+        /// </summary>
+        /// <param name="loopCount"></param>
+        /// <returns></returns>
+        ITweenData SetLoopCount(uint loopCount);
 
         /// <summary>
         /// </summary>

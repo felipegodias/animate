@@ -3,6 +3,7 @@ using Animate.Core.Interfaces;
 using Animate.Core.Internal.Collections;
 using Animate.Core.Internal.Interfaces;
 using Animate.Core.Internal.Proxies;
+using UnityEngine;
 
 namespace Animate.Core.Internal.Concretes {
 
@@ -20,7 +21,11 @@ namespace Animate.Core.Internal.Concretes {
 
         private float delay;
 
+        private uint loopCount;
+
         private float elapsedTime;
+
+        private uint elapsedLoops;
 
         private float evaluation;
 
@@ -45,6 +50,8 @@ namespace Animate.Core.Internal.Concretes {
 
         public float Delay => this.delay;
 
+        public uint LoopCount => this.loopCount;
+
         public ITweenData SetTime(float time) {
             this.time = time;
             return this;
@@ -52,6 +59,11 @@ namespace Animate.Core.Internal.Concretes {
 
         public ITweenData SetDelay(float delay) {
             this.delay = delay;
+            return this;
+        }
+
+        public ITweenData SetLoopCount(uint loopCount) {
+            this.loopCount = loopCount;
             return this;
         }
 
@@ -84,11 +96,22 @@ namespace Animate.Core.Internal.Concretes {
                 return;
             }
 
-            this.progress = (this.elapsedTime - this.delay) / this.time;
+            float normalizedTime = this.elapsedTime - this.delay;
+
+            uint currentLoopIndex = (uint) Mathf.FloorToInt(normalizedTime / this.time);
+
+            if (this.elapsedLoops != currentLoopIndex) {
+                this.progress = 1;
+            } else {
+                this.progress = normalizedTime % this.time / this.time;
+            }
+
             this.evaluation = this.progress;
             this.onTweenUpdates.Invoke(this.proxy);
 
-            if (this.progress < 1) {
+            this.elapsedLoops = currentLoopIndex;
+
+            if (this.elapsedLoops <= this.loopCount - 1) {
                 return;
             }
 
