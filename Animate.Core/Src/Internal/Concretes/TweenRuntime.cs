@@ -16,25 +16,36 @@ namespace Animate.Core.Internal.Concretes {
 
         private readonly ITween proxy;
 
+        private float time;
+
         private float delay;
 
         private float elapsedTime;
 
         private float evaluation;
 
+        private float progress;
+
         private bool isCompleted;
 
         private bool isStarted;
-
-        private float progress;
-
-        private float time;
 
         public TweenRuntime() {
             this.onTweenBegins = new EventList();
             this.onTweenUpdates = new EventList();
             this.onTweenEnds = new EventList();
             this.proxy = new TweenProxy(this);
+        }
+
+        public float Time => this.time;
+
+        public float Progress => this.progress;
+
+        public float Evaluation => this.evaluation;
+
+        public ITweenData SetTime(float time) {
+            this.time = time;
+            return this;
         }
 
         public ITweenData SetDelay(float delay) {
@@ -54,17 +65,6 @@ namespace Animate.Core.Internal.Concretes {
 
         public ITweenData AddOnTweenEnd(AnimateEvent onTweenEnd) {
             this.onTweenEnds.Add(onTweenEnd);
-            return this;
-        }
-
-        public float Time => this.time;
-
-        public float Progress => this.progress;
-
-        public float Evaluation => this.evaluation;
-
-        public ITweenData SetTime(float time) {
-            this.time = time;
             return this;
         }
 
