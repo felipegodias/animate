@@ -39,11 +39,11 @@ namespace Animate.Core.Internal.Concretes {
 
         private float progress;
 
-        private bool isStarted;
+        private bool hasBegan;
 
         private bool hasLoopBegan;
 
-        private bool isCompleted;
+        private bool hasEnded;
 
         public TweenRuntime() {
             this.onTweenBegin = new EventList();
@@ -118,11 +118,11 @@ namespace Animate.Core.Internal.Concretes {
             return this;
         }
 
-        public bool IsCompleted => this.isCompleted;
+        public bool IsCompleted => this.hasEnded;
 
         public void Update(float deltaTime) {
-            if (!this.isStarted) {
-                this.isStarted = true;
+            if (!this.hasBegan) {
+                this.hasBegan = true;
                 this.onTweenBegin.Invoke(this.proxy);
             }
 
@@ -170,7 +170,7 @@ namespace Animate.Core.Internal.Concretes {
                 return;
             }
 
-            this.isCompleted = true;
+            this.hasEnded = true;
             this.onTweenEnd.Invoke(this.proxy);
         }
 
