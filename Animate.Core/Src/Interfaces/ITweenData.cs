@@ -30,7 +30,7 @@ namespace Animate.Core.Interfaces {
 
         /// <summary>
         /// </summary>
-        /// <param name="delay"></param>
+        /// <param name="startDelay"></param>
         /// <returns></returns>
         ITweenData SetStartDelay(float startDelay);
 
