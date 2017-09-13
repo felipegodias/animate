@@ -29,6 +29,8 @@ namespace Animate.Core.Internal.Concretes {
 
         private uint elapsedLoops;
 
+        private LoopType loopType;
+
         private float evaluation;
 
         private float progress;
@@ -56,6 +58,8 @@ namespace Animate.Core.Internal.Concretes {
 
         public uint LoopCount => this.loopCount;
 
+        public LoopType LoopType => this.loopType;
+
         public ITweenData SetTime(float time) {
             this.time = time;
             return this;
@@ -73,6 +77,11 @@ namespace Animate.Core.Internal.Concretes {
 
         public ITweenData SetLoopCount(uint loopCount) {
             this.loopCount = loopCount;
+            return this;
+        }
+
+        public ITweenData SetLoopType(LoopType loopType) {
+            this.loopType = loopType;
             return this;
         }
 
@@ -117,7 +126,12 @@ namespace Animate.Core.Internal.Concretes {
                 this.progress = normalizedTime % this.time / this.time;
             }
 
-            this.evaluation = this.progress;
+            if (this.loopType == LoopType.PingPong) {
+                this.evaluation = this.elapsedLoops % 2 == 0 ? this.progress : 1 - this.progress;
+            } else {
+                this.evaluation = this.progress;
+            }
+
             this.onTweenUpdates.Invoke(this.proxy);
 
             this.elapsedLoops = currentLoopIndex;

@@ -22,6 +22,8 @@ namespace Animate.Core.Interfaces {
         /// </summary>
         uint LoopCount { get; }
 
+        LoopType LoopType { get; }
+
         /// <summary>
         /// </summary>
         /// <param name="time"></param>
@@ -45,6 +47,12 @@ namespace Animate.Core.Interfaces {
         /// <param name="loopCount"></param>
         /// <returns></returns>
         ITweenData SetLoopCount(uint loopCount);
+
+        /// <summary>
+        /// </summary>
+        /// <param name="loopType"></param>
+        /// <returns></returns>
+        ITweenData SetLoopType(LoopType loopType);
 
         /// <summary>
         /// </summary>
