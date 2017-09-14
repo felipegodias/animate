@@ -153,7 +153,8 @@ namespace Animate.Core.Internal.Concretes {
             if (!this.hasLoopBegan) {
                 this.hasLoopBegan = true;
                 this.progress = 0;
-                this.evaluation = this.elapsedLoops % 2 == 0 && this.loopType == LoopType.PingPong ? 0 : 1;
+                bool isLoopPairAndPingPong = this.elapsedLoops % 2 == 0 && this.loopType == LoopType.PingPong;
+                this.evaluation = isLoopPairAndPingPong ? 0 : 1;
                 this.onTweenLoopBegin.Invoke(this.proxy);
             }
 
