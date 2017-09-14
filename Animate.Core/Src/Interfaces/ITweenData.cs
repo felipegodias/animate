@@ -84,6 +84,12 @@ namespace Animate.Core.Interfaces {
         /// <returns></returns>
         ITweenData AddOnTweenEnd(AnimateEvent onTweenEnd);
 
+        /// <summary>
+        /// </summary>
+        /// <param name="animation"></param>
+        /// <returns></returns>
+        ITweenData AddAnimation(IAnimation animation);
+
     }
 
 }

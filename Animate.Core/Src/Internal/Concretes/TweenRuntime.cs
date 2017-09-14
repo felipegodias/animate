@@ -118,6 +118,15 @@ namespace Animate.Core.Internal.Concretes {
             return this;
         }
 
+        public ITweenData AddAnimation(IAnimation animation) {
+            this.onTweenBegin.Add(animation.OnTweenBegin);
+            this.onTweenLoopBegin.Add(animation.OnTweenLoopBegin);
+            this.onTweenUpdate.Add(animation.OnTweenUpdate);
+            this.onTweenLoopEnd.Add(animation.OnTweenLoopEnd);
+            this.onTweenEnd.Add(animation.OnTweenEnd);
+            return this;
+        }
+
         public bool IsCompleted => this.hasEnded;
 
         public void Update(float deltaTime) {
