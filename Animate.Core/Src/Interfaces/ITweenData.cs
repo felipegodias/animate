@@ -56,6 +56,12 @@ namespace Animate.Core.Interfaces {
 
         /// <summary>
         /// </summary>
+        /// <param name="easeCurve"></param>
+        /// <returns></returns>
+        ITweenData SetEaseCurve(IEaseCurve easeCurve);
+
+        /// <summary>
+        /// </summary>
         /// <param name="onTweenBegin"></param>
         /// <returns></returns>
         ITweenData AddOnTweenBegin(AnimateEvent onTweenBegin);

@@ -35,6 +35,8 @@ namespace Animate.Core.Internal.Concretes {
 
         private LoopType loopType;
 
+        private IEaseCurve easeCurve;
+
         private float evaluation;
 
         private float progress;
@@ -90,6 +92,11 @@ namespace Animate.Core.Internal.Concretes {
 
         public ITweenData SetLoopType(LoopType loopType) {
             this.loopType = loopType;
+            return this;
+        }
+
+        public ITweenData SetEaseCurve(IEaseCurve easeCurve) {
+            this.easeCurve = easeCurve;
             return this;
         }
 
@@ -160,10 +167,10 @@ namespace Animate.Core.Internal.Concretes {
                 this.progress = normalizedTime % this.time / this.time;
             }
 
+            this.evaluation = this.easeCurve?.Evaluate(this.progress) ?? this.progress;
+
             if (this.loopType == LoopType.PingPong) {
-                this.evaluation = this.elapsedLoops % 2 == 0 ? this.progress : 1 - this.progress;
-            } else {
-                this.evaluation = this.progress;
+                this.evaluation = this.elapsedLoops % 2 == 0 ? this.evaluation : 1 - this.evaluation;
             }
 
             this.onTweenUpdate.Invoke(this.proxy);
