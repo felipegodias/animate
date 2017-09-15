@@ -152,6 +152,10 @@ namespace Animate.Core.Internal.Concretes {
         public bool IsCompleted => this.hasEnded;
 
         public void Update(float deltaTime) {
+            if (!this.isPlaying) {
+                return;
+            }
+
             if (!this.hasBegan) {
                 this.hasBegan = true;
                 this.onTweenBegin.Invoke(this.proxy);
