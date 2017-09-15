@@ -41,6 +41,8 @@ namespace Animate.Core.Internal.Concretes {
 
         private float progress;
 
+        private bool isPlaying;
+
         private bool hasBegan;
 
         private bool hasLoopBegan;
@@ -48,6 +50,7 @@ namespace Animate.Core.Internal.Concretes {
         private bool hasEnded;
 
         public TweenRuntime() {
+            this.isPlaying = true;
             this.onTweenBegin = new EventList();
             this.onTweenLoopBegin = new EventList();
             this.onTweenUpdate = new EventList();
@@ -59,6 +62,18 @@ namespace Animate.Core.Internal.Concretes {
         public float Progress => this.progress;
 
         public float Evaluation => this.evaluation;
+
+        public bool IsPlaying => this.isPlaying;
+
+        public bool IsPaused => !this.IsPlaying;
+
+        public void Play() {
+            this.isPlaying = true;
+        }
+
+        public void Pause() {
+            this.isPlaying = false;
+        }
 
         public float Time => this.time;
 

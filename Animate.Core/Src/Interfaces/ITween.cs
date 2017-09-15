@@ -12,6 +12,22 @@
         /// </summary>
         float Evaluation { get; }
 
+        /// <summary>
+        /// </summary>
+        bool IsPlaying { get; }
+
+        /// <summary>
+        /// </summary>
+        bool IsPaused { get; }
+
+        /// <summary>
+        /// </summary>
+        void Play();
+
+        /// <summary>
+        /// </summary>
+        void Pause();
+
     }
 
 }

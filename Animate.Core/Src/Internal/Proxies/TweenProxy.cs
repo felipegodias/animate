@@ -14,6 +14,18 @@ namespace Animate.Core.Internal.Proxies {
 
         public float Evaluation => this.tween.Evaluation;
 
+        public bool IsPlaying => this.tween.IsPlaying;
+
+        public bool IsPaused => this.tween.IsPaused;
+
+        public void Play() {
+            this.tween.Play();
+        }
+
+        public void Pause() {
+            this.tween.Pause();
+        }
+
     }
 
 }
