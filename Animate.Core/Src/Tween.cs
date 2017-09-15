@@ -29,8 +29,9 @@ namespace Animate.Core {
         /// </summary>
         /// <returns></returns>
         public static ITweenData New() {
-            TweenRuntime tweenRuntime = new TweenRuntime();
-            TweenController.Add(tweenRuntime);
+            ITweenController tweenController = TweenController;
+            TweenRuntime tweenRuntime = new TweenRuntime(tweenController);
+            tweenController.Add(tweenRuntime);
             return tweenRuntime;
         }
 

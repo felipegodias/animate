@@ -9,6 +9,8 @@ namespace Animate.Core.Internal.Concretes {
 
     internal sealed class TweenRuntime : ITween, ITweenData, ITweenRuntime {
 
+        private readonly ITweenController tweenController;
+
         private readonly IEventList onTweenBegin;
 
         private readonly IEventList onTweenLoopBegin;
@@ -49,7 +51,8 @@ namespace Animate.Core.Internal.Concretes {
 
         private bool hasEnded;
 
-        public TweenRuntime() {
+        public TweenRuntime(ITweenController tweenController) {
+            this.tweenController = tweenController;
             this.isPlaying = true;
             this.onTweenBegin = new EventList();
             this.onTweenLoopBegin = new EventList();
@@ -73,6 +76,28 @@ namespace Animate.Core.Internal.Concretes {
 
         public void Pause() {
             this.isPlaying = false;
+        }
+
+        public void Stop() {
+            this.Pause();
+            this.hasBegan = false;
+            this.hasLoopBegan = false;
+            this.elapsedTime = 0;
+            this.elapsedLoops = 0;
+            this.progress = 0;
+            this.evaluation = 0;
+        }
+
+        public void Restart() {
+            this.Stop();
+            this.Play();
+
+            if (!this.hasEnded) {
+                return;
+            }
+
+            this.hasEnded = false;
+            this.tweenController.Add(this);
         }
 
         public float Time => this.time;

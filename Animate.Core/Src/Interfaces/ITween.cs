@@ -28,6 +28,14 @@
         /// </summary>
         void Pause();
 
+        /// <summary>
+        /// </summary>
+        void Stop();
+
+        /// <summary>
+        /// </summary>
+        void Restart();
+
     }
 
 }

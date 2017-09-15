@@ -26,6 +26,14 @@ namespace Animate.Core.Internal.Proxies {
             this.tween.Pause();
         }
 
+        public void Stop() {
+            this.tween.Stop();
+        }
+
+        public void Restart() {
+            this.tween.Restart();
+        }
+
     }
 
 }
