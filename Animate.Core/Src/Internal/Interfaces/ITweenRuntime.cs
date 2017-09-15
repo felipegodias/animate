@@ -10,6 +10,14 @@
 
         /// <summary>
         /// </summary>
+        void Lock();
+
+        /// <summary>
+        /// </summary>
+        void Unlock();
+
+        /// <summary>
+        /// </summary>
         /// <param name="deltaTime"></param>
         void Update(float deltaTime);
 

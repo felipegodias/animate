@@ -22,7 +22,9 @@ namespace Animate.Core.Internal.Controllers {
             LinkedListNode<ITweenRuntime> iterator = this.runningList.First;
             while (iterator != null) {
                 ITweenRuntime tweenRuntime = iterator.Value;
+                tweenRuntime.Lock();
                 tweenRuntime.Update(deltaTime);
+                tweenRuntime.Unlock();
                 if (tweenRuntime.IsCompleted) {
                     LinkedListNode<ITweenRuntime> nodeToRemove = iterator;
                     this.runningList.Remove(nodeToRemove);
