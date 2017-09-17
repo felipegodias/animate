@@ -127,6 +127,7 @@ namespace Animate.Core.Internal.Concretes {
             if (time < 0) {
                 throw new ArgumentOutOfRangeException(nameof(time), time, kTimeArgOutOfRangeExceptionMessage);
             }
+
             this.AssertThatHasNotBegan();
             this.time = time;
             return this;
@@ -160,6 +161,7 @@ namespace Animate.Core.Internal.Concretes {
             if (easeCurve == null) {
                 throw new ArgumentNullException(nameof(easeCurve));
             }
+
             this.AssertThatHasNotBegan();
             this.easeCurve = easeCurve;
             return this;
@@ -169,6 +171,7 @@ namespace Animate.Core.Internal.Concretes {
             if (onTweenBegin == null) {
                 throw new ArgumentNullException(nameof(onTweenBegin));
             }
+
             this.AssertThatHasNotBegan();
             this.onTweenBegin.Add(onTweenBegin);
             return this;
@@ -178,6 +181,7 @@ namespace Animate.Core.Internal.Concretes {
             if (onTweenLoopBegin == null) {
                 throw new ArgumentNullException(nameof(onTweenLoopBegin));
             }
+
             this.AssertThatHasNotBegan();
             this.onTweenLoopBegin.Add(onTweenLoopBegin);
             return this;
@@ -187,6 +191,7 @@ namespace Animate.Core.Internal.Concretes {
             if (onTweenUpdate == null) {
                 throw new ArgumentNullException(nameof(onTweenUpdate));
             }
+
             this.AssertThatHasNotBegan();
             this.onTweenUpdate.Add(onTweenUpdate);
             return this;
@@ -196,6 +201,7 @@ namespace Animate.Core.Internal.Concretes {
             if (onTweenLoopEnd == null) {
                 throw new ArgumentNullException(nameof(onTweenLoopEnd));
             }
+
             this.AssertThatHasNotBegan();
             this.onTweenLoopEnd.Add(onTweenLoopEnd);
             return this;
@@ -205,6 +211,7 @@ namespace Animate.Core.Internal.Concretes {
             if (onTweenEnd == null) {
                 throw new ArgumentNullException(nameof(onTweenEnd));
             }
+
             this.AssertThatHasNotBegan();
             this.onTweenEnd.Add(onTweenEnd);
             return this;
@@ -214,6 +221,7 @@ namespace Animate.Core.Internal.Concretes {
             if (animation == null) {
                 throw new ArgumentNullException(nameof(animation));
             }
+
             this.AssertThatHasNotBegan();
             this.onTweenBegin.Add(animation.OnTweenBegin);
             this.onTweenLoopBegin.Add(animation.OnTweenLoopBegin);

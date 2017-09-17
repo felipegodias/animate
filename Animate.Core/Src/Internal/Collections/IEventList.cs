@@ -7,6 +7,7 @@ namespace Animate.Core.Internal.Collections {
     internal interface IEventList : IEnumerable<AnimateEvent> {
 
         void Add(AnimateEvent item);
+
         void Invoke(ITween tween);
 
     }
