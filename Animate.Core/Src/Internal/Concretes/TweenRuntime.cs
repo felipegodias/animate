@@ -11,7 +11,10 @@ namespace Animate.Core.Internal.Concretes {
     internal sealed class TweenRuntime : ITween, ITweenData, ITweenRuntime {
 
         private const string kTimeArgOutOfRangeExceptionMessage = "Time argument is out of range. The value should be higher than zero.";
+
         private const string kHasBeganExceptionMessage = "The tween can not be modified after it has started.";
+
+        private const string kIsUpdatingExceptionMessage = "Play, Pause, Stop and Restart methods can not be called inside a event callback.";
 
         private readonly ITweenController tweenController;
 
@@ -77,14 +80,17 @@ namespace Animate.Core.Internal.Concretes {
         public bool IsPaused => !this.IsPlaying;
 
         public void Play() {
+            this.AssertThatIsNotUpdating();
             this.isPlaying = true;
         }
 
         public void Pause() {
+            this.AssertThatIsNotUpdating();
             this.isPlaying = false;
         }
 
         public void Stop() {
+            this.AssertThatIsNotUpdating();
             this.Pause();
             this.hasBegan = false;
             this.hasLoopBegan = false;
@@ -95,6 +101,7 @@ namespace Animate.Core.Internal.Concretes {
         }
 
         public void Restart() {
+            this.AssertThatIsNotUpdating();
             this.Stop();
             this.Play();
 
@@ -288,6 +295,12 @@ namespace Animate.Core.Internal.Concretes {
         private void AssertThatHasNotBegan() {
             if (this.hasBegan) {
                 throw new InvalidOperationException(kHasBeganExceptionMessage);
+            }
+        }
+
+        private void AssertThatIsNotUpdating() {
+            if (this.isUpdating) {
+                throw new InvalidOperationException(kIsUpdatingExceptionMessage);
             }
         }
 
