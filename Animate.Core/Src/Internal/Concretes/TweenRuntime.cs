@@ -10,6 +10,7 @@ namespace Animate.Core.Internal.Concretes {
 
     internal sealed class TweenRuntime : ITween, ITweenData, ITweenRuntime {
 
+        private const string kTimeArgOutOfRangeExceptionMessage = "Time argument is out of range. The value should be higher than zero.";
         private const string kHasBeganExceptionMessage = "The tween can not be modified after it has started.";
 
         private readonly ITweenController tweenController;
@@ -116,6 +117,9 @@ namespace Animate.Core.Internal.Concretes {
         public LoopType LoopType => this.loopType;
 
         public ITweenData SetTime(float time) {
+            if (time < 0) {
+                throw new ArgumentOutOfRangeException(nameof(time), time, kTimeArgOutOfRangeExceptionMessage);
+            }
             this.AssertThatHasNotBegan();
             this.time = time;
             return this;
@@ -146,42 +150,63 @@ namespace Animate.Core.Internal.Concretes {
         }
 
         public ITweenData SetEaseCurve(IEaseCurve easeCurve) {
+            if (easeCurve == null) {
+                throw new ArgumentNullException(nameof(easeCurve));
+            }
             this.AssertThatHasNotBegan();
             this.easeCurve = easeCurve;
             return this;
         }
 
         public ITweenData AddOnTweenBegin(AnimateEvent onTweenBegin) {
+            if (onTweenBegin == null) {
+                throw new ArgumentNullException(nameof(onTweenBegin));
+            }
             this.AssertThatHasNotBegan();
             this.onTweenBegin.Add(onTweenBegin);
             return this;
         }
 
         public ITweenData AddOnTweenLoopBegin(AnimateEvent onTweenLoopBegin) {
+            if (onTweenLoopBegin == null) {
+                throw new ArgumentNullException(nameof(onTweenLoopBegin));
+            }
             this.AssertThatHasNotBegan();
             this.onTweenLoopBegin.Add(onTweenLoopBegin);
             return this;
         }
 
         public ITweenData AddOnTweenUpdate(AnimateEvent onTweenUpdate) {
+            if (onTweenUpdate == null) {
+                throw new ArgumentNullException(nameof(onTweenUpdate));
+            }
             this.AssertThatHasNotBegan();
             this.onTweenUpdate.Add(onTweenUpdate);
             return this;
         }
 
         public ITweenData AddOnTweenLoopEnd(AnimateEvent onTweenLoopEnd) {
+            if (onTweenLoopEnd == null) {
+                throw new ArgumentNullException(nameof(onTweenLoopEnd));
+            }
             this.AssertThatHasNotBegan();
             this.onTweenLoopEnd.Add(onTweenLoopEnd);
             return this;
         }
 
         public ITweenData AddOnTweenEnd(AnimateEvent onTweenEnd) {
+            if (onTweenEnd == null) {
+                throw new ArgumentNullException(nameof(onTweenEnd));
+            }
             this.AssertThatHasNotBegan();
             this.onTweenEnd.Add(onTweenEnd);
             return this;
         }
 
         public ITweenData AddAnimation(IAnimation animation) {
+            if (animation == null) {
+                throw new ArgumentNullException(nameof(animation));
+            }
             this.AssertThatHasNotBegan();
             this.onTweenBegin.Add(animation.OnTweenBegin);
             this.onTweenLoopBegin.Add(animation.OnTweenLoopBegin);
