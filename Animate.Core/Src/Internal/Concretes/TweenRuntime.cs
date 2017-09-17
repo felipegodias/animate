@@ -1,4 +1,5 @@
-﻿using Animate.Core.Events;
+﻿using System;
+using Animate.Core.Events;
 using Animate.Core.Interfaces;
 using Animate.Core.Internal.Collections;
 using Animate.Core.Internal.Interfaces;
@@ -8,6 +9,8 @@ using UnityEngine;
 namespace Animate.Core.Internal.Concretes {
 
     internal sealed class TweenRuntime : ITween, ITweenData, ITweenRuntime {
+
+        private const string kHasBeganExceptionMessage = "The tween can not be modified after it has started.";
 
         private readonly ITweenController tweenController;
 
@@ -113,61 +116,73 @@ namespace Animate.Core.Internal.Concretes {
         public LoopType LoopType => this.loopType;
 
         public ITweenData SetTime(float time) {
+            this.AssertThatHasNotBegan();
             this.time = time;
             return this;
         }
 
         public ITweenData SetStartDelay(float startDelay) {
+            this.AssertThatHasNotBegan();
             this.startDelay = startDelay;
             return this;
         }
 
         public ITweenData SetLoopDelay(float loopDelay) {
+            this.AssertThatHasNotBegan();
             this.loopDelay = loopDelay;
             return this;
         }
 
         public ITweenData SetLoopCount(uint loopCount) {
+            this.AssertThatHasNotBegan();
             this.loopCount = loopCount;
             return this;
         }
 
         public ITweenData SetLoopType(LoopType loopType) {
+            this.AssertThatHasNotBegan();
             this.loopType = loopType;
             return this;
         }
 
         public ITweenData SetEaseCurve(IEaseCurve easeCurve) {
+            this.AssertThatHasNotBegan();
             this.easeCurve = easeCurve;
             return this;
         }
 
         public ITweenData AddOnTweenBegin(AnimateEvent onTweenBegin) {
+            this.AssertThatHasNotBegan();
             this.onTweenBegin.Add(onTweenBegin);
             return this;
         }
 
         public ITweenData AddOnTweenLoopBegin(AnimateEvent onTweenLoopBegin) {
+            this.AssertThatHasNotBegan();
             this.onTweenLoopBegin.Add(onTweenLoopBegin);
             return this;
         }
 
         public ITweenData AddOnTweenUpdate(AnimateEvent onTweenUpdate) {
+            this.AssertThatHasNotBegan();
             this.onTweenUpdate.Add(onTweenUpdate);
             return this;
         }
 
         public ITweenData AddOnTweenLoopEnd(AnimateEvent onTweenLoopEnd) {
+            this.AssertThatHasNotBegan();
             this.onTweenLoopEnd.Add(onTweenLoopEnd);
             return this;
         }
 
         public ITweenData AddOnTweenEnd(AnimateEvent onTweenEnd) {
+            this.AssertThatHasNotBegan();
             this.onTweenEnd.Add(onTweenEnd);
             return this;
         }
 
         public ITweenData AddAnimation(IAnimation animation) {
+            this.AssertThatHasNotBegan();
             this.onTweenBegin.Add(animation.OnTweenBegin);
             this.onTweenLoopBegin.Add(animation.OnTweenLoopBegin);
             this.onTweenUpdate.Add(animation.OnTweenUpdate);
@@ -243,6 +258,12 @@ namespace Animate.Core.Internal.Concretes {
 
             this.hasEnded = true;
             this.onTweenEnd.Invoke(this.proxy);
+        }
+
+        private void AssertThatHasNotBegan() {
+            if (this.hasBegan) {
+                throw new InvalidOperationException(kHasBeganExceptionMessage);
+            }
         }
 
     }
