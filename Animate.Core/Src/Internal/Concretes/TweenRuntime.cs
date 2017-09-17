@@ -55,7 +55,7 @@ namespace Animate.Core.Internal.Concretes {
 
         private bool hasEnded;
 
-        private bool isLocked;
+        private bool isUpdating;
 
         public TweenRuntime(ITweenController tweenController) {
             this.tweenController = tweenController;
@@ -218,12 +218,12 @@ namespace Animate.Core.Internal.Concretes {
 
         public bool IsCompleted => this.hasEnded;
 
-        public void Lock() {
-            this.isLocked = true;
+        public void StartUpdate() {
+            this.isUpdating = true;
         }
 
-        public void Unlock() {
-            this.isLocked = false;
+        public void FinishUpdate() {
+            this.isUpdating = false;
         }
 
         public void Update(float deltaTime) {

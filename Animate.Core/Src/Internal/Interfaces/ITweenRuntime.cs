@@ -10,11 +10,11 @@
 
         /// <summary>
         /// </summary>
-        void Lock();
+        void StartUpdate();
 
         /// <summary>
         /// </summary>
-        void Unlock();
+        void FinishUpdate();
 
         /// <summary>
         /// </summary>
