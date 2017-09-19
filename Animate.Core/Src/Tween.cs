@@ -8,20 +8,20 @@ namespace Animate.Core {
 
     /// <summary>
     /// </summary>
-    public static class Tween {
+    public static class TweenFactory {
 
-        private static ITweenController tweenController;
+        private static ITweenManager tweenManager;
 
-        private static ITweenController TweenController {
+        private static ITweenManager TweenManager {
             get {
-                if (tweenController != null) {
-                    return tweenController;
+                if (tweenManager != null) {
+                    return tweenManager;
                 }
 
-                GameObject gameObject = new GameObject(nameof(TweenController));
+                GameObject gameObject = new GameObject(nameof(TweenManager));
                 Object.DontDestroyOnLoad(gameObject);
-                tweenController = gameObject.AddComponent<TweenController>();
-                return tweenController;
+                tweenManager = gameObject.AddComponent<TweenManager>();
+                return tweenManager;
             }
         }
 
@@ -29,10 +29,10 @@ namespace Animate.Core {
         /// </summary>
         /// <returns></returns>
         public static ITweenData New() {
-            ITweenController tweenController = TweenController;
-            TweenRuntime tweenRuntime = new TweenRuntime(tweenController);
-            tweenController.Add(tweenRuntime);
-            return tweenRuntime;
+            ITweenManager tweenManager = TweenManager;
+            Tween tweenBehaviour = new Tween(tweenManager);
+            tweenManager.Add(tweenBehaviour);
+            return tweenBehaviour;
         }
 
     }

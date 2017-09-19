@@ -46,13 +46,13 @@
     <Compile Include="Src\Tween.cs" />
     <Compile Include="Src\Internal\Collections\EventList.cs" />
     <Compile Include="Src\Internal\Collections\IEventList.cs" />
-    <Compile Include="Src\Internal\Concretes\TweenRuntime.cs" />
-    <Compile Include="Src\Internal\Controllers\TweenController.cs" />
+    <Compile Include="Src\Internal\Concretes\Tween.cs" />
+    <Compile Include="Src\Internal\Controllers\TweenManager.cs" />
     <Compile Include="Src\Events\AnimateEvent.cs" />
     <Compile Include="Src\Interfaces\ITween.cs" />
-    <Compile Include="Src\Internal\Interfaces\ITweenController.cs" />
+    <Compile Include="Src\Internal\Interfaces\ITweenManager.cs" />
     <Compile Include="Src\Interfaces\ITweenData.cs" />
-    <Compile Include="Src\Internal\Interfaces\ITweenRuntime.cs" />
+    <Compile Include="Src\Internal\Interfaces\ITweenBehaviour.cs" />
     <Compile Include="Src\Internal\Proxies\TweenProxy.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

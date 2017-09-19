@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Animate.Core.Internal.Concretes {
 
-    internal sealed class TweenRuntime : ITween, ITweenData, ITweenRuntime {
+    internal sealed class Tween : ITween, ITweenData, ITweenBehaviour {
 
         private const string kTimeArgOutOfRangeExceptionMessage = "Time argument is out of range. The value should be higher than zero.";
 
@@ -16,7 +16,7 @@ namespace Animate.Core.Internal.Concretes {
 
         private const string kIsUpdatingExceptionMessage = "Play, Pause, Stop and Restart methods can not be called inside a event callback.";
 
-        private readonly ITweenController tweenController;
+        private readonly ITweenManager tweenManager;
 
         private readonly IEventList onTweenBegin;
 
@@ -60,8 +60,8 @@ namespace Animate.Core.Internal.Concretes {
 
         private bool isUpdating;
 
-        public TweenRuntime(ITweenController tweenController) {
-            this.tweenController = tweenController;
+        public Tween(ITweenManager tweenManager) {
+            this.tweenManager = tweenManager;
             this.isPlaying = true;
             this.onTweenBegin = new EventList();
             this.onTweenLoopBegin = new EventList();
@@ -110,7 +110,7 @@ namespace Animate.Core.Internal.Concretes {
             }
 
             this.hasEnded = false;
-            this.tweenController.Add(this);
+            this.tweenManager.Add(this);
         }
 
         public float Time => this.time;
@@ -231,7 +231,7 @@ namespace Animate.Core.Internal.Concretes {
             return this;
         }
 
-        public bool IsCompleted => this.hasEnded;
+        public bool DestroyFlag => this.hasEnded;
 
         public void StartUpdate() {
             this.isUpdating = true;

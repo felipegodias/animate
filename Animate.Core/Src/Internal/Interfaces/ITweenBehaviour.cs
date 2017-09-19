@@ -2,11 +2,11 @@
 
     /// <summary>
     /// </summary>
-    internal interface ITweenRuntime {
+    internal interface ITweenBehaviour {
 
         /// <summary>
         /// </summary>
-        bool IsCompleted { get; }
+        bool DestroyFlag { get; }
 
         /// <summary>
         /// </summary>

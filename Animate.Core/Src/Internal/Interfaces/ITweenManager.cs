@@ -2,12 +2,12 @@
 
     /// <summary>
     /// </summary>
-    internal interface ITweenController {
+    internal interface ITweenManager {
 
         /// <summary>
         /// </summary>
-        /// <param name="tweenRuntime"></param>
-        void Add(ITweenRuntime tweenRuntime);
+        /// <param name="tweenBehaviour"></param>
+        void Add(ITweenBehaviour tweenBehaviour);
 
     }
 
