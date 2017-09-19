@@ -1,6 +1,6 @@
 ﻿using Animate.Core.Interfaces;
 using Animate.Core.Internal.Concretes;
-using Animate.Core.Internal.Controllers;
+using Animate.Core.Internal.Managers;
 using Animate.Core.Internal.Interfaces;
 using UnityEngine;
 

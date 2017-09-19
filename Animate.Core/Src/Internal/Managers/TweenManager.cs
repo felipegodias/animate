@@ -3,7 +3,7 @@ using System.Reflection;
 using Animate.Core.Internal.Interfaces;
 using UnityEngine;
 
-namespace Animate.Core.Internal.Controllers {
+namespace Animate.Core.Internal.Managers {
 
     [Obfuscation(Feature = "Apply to member Update when method: renaming", Exclude = true)]
     [Obfuscation(Feature = "Apply to member LateUpdate when method: renaming", Exclude = true)]

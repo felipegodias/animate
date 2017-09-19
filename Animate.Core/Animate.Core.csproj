@@ -48,7 +48,7 @@
     <Compile Include="Src\Internal\Collections\EventList.cs" />
     <Compile Include="Src\Internal\Collections\IEventList.cs" />
     <Compile Include="Src\Internal\Concretes\Tween.cs" />
-    <Compile Include="Src\Internal\Controllers\TweenManager.cs" />
+    <Compile Include="Src\Internal\Managers\TweenManager.cs" />
     <Compile Include="Src\Events\AnimateEvent.cs" />
     <Compile Include="Src\Interfaces\ITween.cs" />
     <Compile Include="Src\Internal\Interfaces\ITweenManager.cs" />
