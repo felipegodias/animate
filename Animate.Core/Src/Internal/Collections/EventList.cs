@@ -27,10 +27,10 @@ namespace Animate.Core.Internal.Collections {
             this.collection.Add(item);
         }
 
-        public void Invoke(ITween tween) {
+        public void Invoke(ITweenRuntime tweenRuntime) {
             foreach (AnimateEvent animateEvent in this.collection) {
                 try {
-                    animateEvent.Invoke(tween);
+                    animateEvent.Invoke(tweenRuntime);
                 } catch (Exception e) {
                     Debug.LogException(e);
                 }

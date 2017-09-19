@@ -8,7 +8,7 @@ namespace Animate.Core.Internal.Collections {
 
         void Add(AnimateEvent item);
 
-        void Invoke(ITween tween);
+        void Invoke(ITweenRuntime tweenRuntime);
 
     }
 

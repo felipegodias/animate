@@ -6,28 +6,28 @@
 
         /// <summary>
         /// </summary>
-        /// <param name="tween"></param>
-        void OnTweenBegin(ITween tween);
+        /// <param name="tweenRuntime"></param>
+        void OnTweenBegin(ITweenRuntime tweenRuntime);
 
         /// <summary>
         /// </summary>
-        /// <param name="tween"></param>
-        void OnTweenLoopBegin(ITween tween);
+        /// <param name="tweenRuntime"></param>
+        void OnTweenLoopBegin(ITweenRuntime tweenRuntime);
 
         /// <summary>
         /// </summary>
-        /// <param name="tween"></param>
-        void OnTweenUpdate(ITween tween);
+        /// <param name="tweenRuntime"></param>
+        void OnTweenUpdate(ITweenRuntime tweenRuntime);
 
         /// <summary>
         /// </summary>
-        /// <param name="tween"></param>
-        void OnTweenLoopEnd(ITween tween);
+        /// <param name="tweenRuntime"></param>
+        void OnTweenLoopEnd(ITweenRuntime tweenRuntime);
 
         /// <summary>
         /// </summary>
-        /// <param name="tween"></param>
-        void OnTweenEnd(ITween tween);
+        /// <param name="tweenRuntime"></param>
+        void OnTweenEnd(ITweenRuntime tweenRuntime);
 
     }
 

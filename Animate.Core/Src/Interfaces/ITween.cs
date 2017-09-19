@@ -6,14 +6,6 @@
 
         /// <summary>
         /// </summary>
-        float Progress { get; }
-
-        /// <summary>
-        /// </summary>
-        float Evaluation { get; }
-
-        /// <summary>
-        /// </summary>
         bool IsPlaying { get; }
 
         /// <summary>

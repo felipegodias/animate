@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Animate.Core.Internal.Concretes {
 
-    internal sealed class Tween : ITween, ITweenData, ITweenBehaviour {
+    internal sealed class Tween : ITween, ITweenData, ITweenRuntime, ITweenBehaviour {
 
         private const string kTimeArgOutOfRangeExceptionMessage = "Time argument is out of range. The value should be higher than zero.";
 
@@ -28,7 +28,7 @@ namespace Animate.Core.Internal.Concretes {
 
         private readonly IEventList onTweenEnd;
 
-        private readonly ITween proxy;
+        private readonly ITweenRuntime proxy;
 
         private float time;
 
@@ -68,12 +68,10 @@ namespace Animate.Core.Internal.Concretes {
             this.onTweenUpdate = new EventList();
             this.onTweenLoopEnd = new EventList();
             this.onTweenEnd = new EventList();
-            this.proxy = new TweenProxy(this);
+            this.proxy = new TweenRuntimeProxy(this);
         }
 
-        public float Progress => this.progress;
-
-        public float Evaluation => this.evaluation;
+        #region ITween Members
 
         public bool IsPlaying => this.isPlaying;
 
@@ -112,6 +110,83 @@ namespace Animate.Core.Internal.Concretes {
             this.hasEnded = false;
             this.tweenManager.Add(this);
         }
+
+        #endregion
+
+        #region ITweenBehaviour Members
+
+        public bool DestroyFlag => this.hasEnded;
+
+        public void StartUpdate() {
+            this.isUpdating = true;
+        }
+
+        public void FinishUpdate() {
+            this.isUpdating = false;
+        }
+
+        public void Update(float deltaTime) {
+            if (!this.isPlaying) {
+                return;
+            }
+
+            if (!this.hasBegan) {
+                this.hasBegan = true;
+                this.onTweenBegin.Invoke(this.proxy);
+            }
+
+            this.elapsedTime += deltaTime;
+
+            float timeForLoops = this.time * this.elapsedLoops;
+            float loopDelayForLoops = this.loopDelay * this.elapsedLoops;
+            if (this.elapsedTime <= this.startDelay + timeForLoops + loopDelayForLoops) {
+                return;
+            }
+
+            if (!this.hasLoopBegan) {
+                this.hasLoopBegan = true;
+                this.progress = 0;
+                bool isLoopPairAndPingPong = this.elapsedLoops % 2 == 0 && this.loopType == LoopType.PingPong;
+                this.evaluation = isLoopPairAndPingPong ? 0 : 1;
+                this.onTweenLoopBegin.Invoke(this.proxy);
+            }
+
+            float normalizedTime = this.elapsedTime - (this.startDelay + this.elapsedLoops * this.loopDelay);
+
+            uint currentLoopIndex = (uint) Mathf.FloorToInt(normalizedTime / this.time);
+
+            if (this.elapsedLoops != currentLoopIndex) {
+                this.progress = 1;
+            } else {
+                this.progress = normalizedTime % this.time / this.time;
+            }
+
+            this.evaluation = this.easeCurve?.Evaluate(this.progress) ?? this.progress;
+
+            if (this.loopType == LoopType.PingPong) {
+                this.evaluation = this.elapsedLoops % 2 == 0 ? this.evaluation : 1 - this.evaluation;
+            }
+
+            this.onTweenUpdate.Invoke(this.proxy);
+
+            if (this.elapsedLoops != currentLoopIndex) {
+                this.onTweenLoopEnd.Invoke(this.proxy);
+                this.hasLoopBegan = false;
+            }
+
+            this.elapsedLoops = currentLoopIndex;
+
+            if (this.loopCount == 0 || this.elapsedLoops <= this.loopCount - 1) {
+                return;
+            }
+
+            this.hasEnded = true;
+            this.onTweenEnd.Invoke(this.proxy);
+        }
+
+        #endregion
+
+        #region ITweenData Members
 
         public float Time => this.time;
 
@@ -231,74 +306,15 @@ namespace Animate.Core.Internal.Concretes {
             return this;
         }
 
-        public bool DestroyFlag => this.hasEnded;
+        #endregion
 
-        public void StartUpdate() {
-            this.isUpdating = true;
-        }
+        #region ITweenRuntime Members
 
-        public void FinishUpdate() {
-            this.isUpdating = false;
-        }
+        public float Progress => this.progress;
 
-        public void Update(float deltaTime) {
-            if (!this.isPlaying) {
-                return;
-            }
+        public float Evaluation => this.evaluation;
 
-            if (!this.hasBegan) {
-                this.hasBegan = true;
-                this.onTweenBegin.Invoke(this.proxy);
-            }
-
-            this.elapsedTime += deltaTime;
-
-            float timeForLoops = this.time * this.elapsedLoops;
-            float loopDelayForLoops = this.loopDelay * this.elapsedLoops;
-            if (this.elapsedTime <= this.startDelay + timeForLoops + loopDelayForLoops) {
-                return;
-            }
-
-            if (!this.hasLoopBegan) {
-                this.hasLoopBegan = true;
-                this.progress = 0;
-                bool isLoopPairAndPingPong = this.elapsedLoops % 2 == 0 && this.loopType == LoopType.PingPong;
-                this.evaluation = isLoopPairAndPingPong ? 0 : 1;
-                this.onTweenLoopBegin.Invoke(this.proxy);
-            }
-
-            float normalizedTime = this.elapsedTime - (this.startDelay + this.elapsedLoops * this.loopDelay);
-
-            uint currentLoopIndex = (uint) Mathf.FloorToInt(normalizedTime / this.time);
-
-            if (this.elapsedLoops != currentLoopIndex) {
-                this.progress = 1;
-            } else {
-                this.progress = normalizedTime % this.time / this.time;
-            }
-
-            this.evaluation = this.easeCurve?.Evaluate(this.progress) ?? this.progress;
-
-            if (this.loopType == LoopType.PingPong) {
-                this.evaluation = this.elapsedLoops % 2 == 0 ? this.evaluation : 1 - this.evaluation;
-            }
-
-            this.onTweenUpdate.Invoke(this.proxy);
-
-            if (this.elapsedLoops != currentLoopIndex) {
-                this.onTweenLoopEnd.Invoke(this.proxy);
-                this.hasLoopBegan = false;
-            }
-
-            this.elapsedLoops = currentLoopIndex;
-
-            if (this.loopCount == 0 || this.elapsedLoops <= this.loopCount - 1) {
-                return;
-            }
-
-            this.hasEnded = true;
-            this.onTweenEnd.Invoke(this.proxy);
-        }
+        #endregion
 
         private void AssertThatHasNotBegan() {
             if (this.hasBegan) {
