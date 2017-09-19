@@ -6,11 +6,31 @@
 
         /// <summary>
         /// </summary>
-        float Progress { get; }
+        bool IsPlaying { get; }
 
         /// <summary>
         /// </summary>
-        float Evaluation { get; }
+        bool IsPaused { get; }
+
+        /// <summary>
+        /// </summary>
+        void Play();
+
+        /// <summary>
+        /// </summary>
+        void Pause();
+
+        /// <summary>
+        /// </summary>
+        void Stop();
+
+        /// <summary>
+        /// </summary>
+        void Restart();
+
+        /// <summary>
+        /// </summary>
+        void Cancel();
 
     }
 
