@@ -13,9 +13,13 @@ namespace Animate.Core.Internal.Controllers {
 
         private readonly Queue<ITweenBehaviour> waitingQueue = new Queue<ITweenBehaviour>();
 
+        #region ITweenManager Members
+
         public void Add(ITweenBehaviour tweenBehaviour) {
             this.waitingQueue.Enqueue(tweenBehaviour);
         }
+
+        #endregion
 
         private void Update() {
             float deltaTime = Time.deltaTime;

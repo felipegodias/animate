@@ -15,6 +15,8 @@ namespace Animate.Core.Internal.Collections {
             this.collection = new LinkedList<AnimateEvent>();
         }
 
+        #region IEventList Members
+
         IEnumerator IEnumerable.GetEnumerator() {
             return this.collection.GetEnumerator();
         }
@@ -36,6 +38,8 @@ namespace Animate.Core.Internal.Collections {
                 }
             }
         }
+
+        #endregion
 
     }
 

@@ -10,9 +10,13 @@ namespace Animate.Core.Internal.Proxies {
             this.tweenRuntime = tweenRuntime;
         }
 
+        #region ITweenRuntime Members
+
         public float Progress => this.tweenRuntime.Progress;
 
         public float Evaluation => this.tweenRuntime.Evaluation;
+
+        #endregion
 
     }
 
