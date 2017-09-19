@@ -42,6 +42,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Src\Data\EaseCurve.cs" />
     <Compile Include="Src\EaseCurvesLibrary.cs" />
+    <Compile Include="Src\Extensions\TweenDataExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Animate.Core\Animate.Core.csproj">
