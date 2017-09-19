@@ -35,6 +35,7 @@
     <Reference Include="System" />
     <Reference Include="UnityEngine">
       <HintPath>..\Libs\UnityEngine.dll</HintPath>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -44,6 +45,7 @@
     <ProjectReference Include="..\Animate.Core\Animate.Core.csproj">
       <Project>{77262be9-c8c8-4b20-9353-d263bc3fb71f}</Project>
       <Name>Animate.Core</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
