@@ -21,6 +21,10 @@
         /// <param name="deltaTime"></param>
         void Update(float deltaTime);
 
+        /// <summary>
+        /// </summary>
+        void OnDestroy();
+
     }
 
 }

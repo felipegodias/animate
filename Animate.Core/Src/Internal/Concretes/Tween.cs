@@ -60,6 +60,8 @@ namespace Animate.Core.Internal.Concretes {
 
         private bool isUpdating;
 
+        private bool cancelFlag;
+
         public Tween(ITweenManager tweenManager) {
             this.tweenManager = tweenManager;
             this.isPlaying = true;
@@ -111,11 +113,15 @@ namespace Animate.Core.Internal.Concretes {
             this.tweenManager.Add(this);
         }
 
+        public void Cancel() {
+            this.cancelFlag = true;
+        }
+
         #endregion
 
         #region ITweenBehaviour Members
 
-        public bool DestroyFlag => this.hasEnded;
+        public bool DestroyFlag => this.hasEnded || this.cancelFlag;
 
         public void StartUpdate() {
             this.isUpdating = true;
@@ -182,6 +188,14 @@ namespace Animate.Core.Internal.Concretes {
 
             this.hasEnded = true;
             this.onTweenEnd.Invoke(this.proxy);
+        }
+
+        public void OnDestroy() {
+            if (!this.cancelFlag) {
+                return;
+            }
+            this.cancelFlag = false;
+            this.hasEnded = true;
         }
 
         #endregion

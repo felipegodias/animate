@@ -30,6 +30,7 @@ namespace Animate.Core.Internal.Controllers {
                 tweenBehaviour.Update(deltaTime);
                 tweenBehaviour.FinishUpdate();
                 if (tweenBehaviour.DestroyFlag) {
+                    tweenBehaviour.OnDestroy();
                     LinkedListNode<ITweenBehaviour> nodeToRemove = iterator;
                     this.runningList.Remove(nodeToRemove);
                     iterator = iterator.Next;

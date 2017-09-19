@@ -28,6 +28,10 @@
         /// </summary>
         void Restart();
 
+        /// <summary>
+        /// </summary>
+        void Cancel();
+
     }
 
 }
