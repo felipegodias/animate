@@ -292,7 +292,7 @@ namespace Animate.Core.Internal.Concretes {
 
             this.elapsedLoops = currentLoopIndex;
 
-            if (this.elapsedLoops <= this.loopCount - 1) {
+            if (this.loopCount == 0 || this.elapsedLoops <= this.loopCount - 1) {
                 return;
             }
 
