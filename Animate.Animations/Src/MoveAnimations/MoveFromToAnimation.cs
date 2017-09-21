@@ -1,5 +1,4 @@
 ﻿using Animate.Animations.TransformAnimations;
-using Animate.Core.Interfaces;
 using UnityEngine;
 
 namespace Animate.Animations.MoveAnimations {
@@ -33,27 +32,7 @@ namespace Animate.Animations.MoveAnimations {
         /// </summary>
         public Vector3 To => this.to;
 
-        public override void OnTweenBegin(ITweenRuntime tweenRuntime) {
-            this.SetPosition(tweenRuntime.Evaluation);
-        }
-
-        public override void OnTweenLoopBegin(ITweenRuntime tweenRuntime) {
-            this.SetPosition(tweenRuntime.Evaluation);
-        }
-
-        public override void OnTweenUpdate(ITweenRuntime tweenRuntime) {
-            this.SetPosition(tweenRuntime.Evaluation);
-        }
-
-        public override void OnTweenLoopEnd(ITweenRuntime tweenRuntime) {
-            this.SetPosition(tweenRuntime.Evaluation);
-        }
-
-        public override void OnTweenEnd(ITweenRuntime tweenRuntime) {
-            this.SetPosition(tweenRuntime.Evaluation);
-        }
-
-        private void SetPosition(float evaluation) {
+        protected override void Animate(float evaluation) {
             this.Transform.position = this.from + this.dif * evaluation;
         }
 
