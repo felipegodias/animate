@@ -44,6 +44,10 @@
     <Compile Include="Src\MoveAnimations\MoveFromAnimation.cs" />
     <Compile Include="Src\MoveAnimations\MoveFromToAnimation.cs" />
     <Compile Include="Src\MoveAnimations\MoveToAnimation.cs" />
+    <Compile Include="Src\RotateAnimations\RotateExtensions.cs" />
+    <Compile Include="Src\RotateAnimations\RotateFromAnimation.cs" />
+    <Compile Include="Src\RotateAnimations\RotateFromToAnimation.cs" />
+    <Compile Include="Src\RotateAnimations\RotateToAnimation.cs" />
     <Compile Include="Src\TransformAnimations\TransformAnimation.cs" />
   </ItemGroup>
   <ItemGroup>
