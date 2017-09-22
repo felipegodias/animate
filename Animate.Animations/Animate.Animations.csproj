@@ -48,6 +48,10 @@
     <Compile Include="Src\RotateAnimations\RotateFromAnimation.cs" />
     <Compile Include="Src\RotateAnimations\RotateFromToAnimation.cs" />
     <Compile Include="Src\RotateAnimations\RotateToAnimation.cs" />
+    <Compile Include="Src\ScaleAnimations\ScaleExtensions.cs" />
+    <Compile Include="Src\ScaleAnimations\ScaleFromAnimation.cs" />
+    <Compile Include="Src\ScaleAnimations\ScaleFromToAnimation.cs" />
+    <Compile Include="Src\ScaleAnimations\ScaleToAnimation.cs" />
     <Compile Include="Src\TransformAnimations\TransformAnimation.cs" />
   </ItemGroup>
   <ItemGroup>
