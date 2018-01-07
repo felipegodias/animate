@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F376B004-B210-4B9F-9368-83A7E236E655}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Animate.Animations</RootNamespace>
+    <AssemblyName>Animate.Animations</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Animate.Animations.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="UnityEngine">
+      <HintPath>..\Libs\UnityEngine.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Src\MoveAnimations\MoveExtensions.cs" />
+    <Compile Include="Src\MoveAnimations\MoveFromAnimation.cs" />
+    <Compile Include="Src\MoveAnimations\MoveFromToAnimation.cs" />
+    <Compile Include="Src\MoveAnimations\MoveToAnimation.cs" />
+    <Compile Include="Src\RotateAnimations\RotateExtensions.cs" />
+    <Compile Include="Src\RotateAnimations\RotateFromAnimation.cs" />
+    <Compile Include="Src\RotateAnimations\RotateFromToAnimation.cs" />
+    <Compile Include="Src\RotateAnimations\RotateToAnimation.cs" />
+    <Compile Include="Src\ScaleAnimations\ScaleExtensions.cs" />
+    <Compile Include="Src\ScaleAnimations\ScaleFromAnimation.cs" />
+    <Compile Include="Src\ScaleAnimations\ScaleFromToAnimation.cs" />
+    <Compile Include="Src\ScaleAnimations\ScaleToAnimation.cs" />
+    <Compile Include="Src\TransformAnimations\TransformAnimation.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Animate.Core\Animate.Core.csproj">
+      <Project>{77262be9-c8c8-4b20-9353-d263bc3fb71f}</Project>
+      <Name>Animate.Core</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
