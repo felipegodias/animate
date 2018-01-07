@@ -143,17 +143,17 @@ namespace Animate.Core.Internal.Concretes {
 
             this.elapsedTime += deltaTime;
 
-            float timeForLoops = this.time * this.elapsedLoops;
-            float loopDelayForLoops = this.loopDelay * this.elapsedLoops;
-            if (this.elapsedTime <= this.startDelay + timeForLoops + loopDelayForLoops) {
+            float elapsedLoopsTime = this.time * this.elapsedLoops;
+            float elapsedLoopsDelay = this.loopDelay * this.elapsedLoops;
+            if (this.elapsedTime <= this.startDelay + elapsedLoopsTime + elapsedLoopsDelay) {
                 return;
             }
 
             if (!this.hasLoopBegan) {
                 this.hasLoopBegan = true;
                 this.progress = 0;
-                bool isLoopPairAndPingPong = this.elapsedLoops % 2 == 0 && this.loopType == LoopType.PingPong;
-                this.evaluation = isLoopPairAndPingPong ? 0 : 1;
+                bool isLoopEvenAndPingPong = this.elapsedLoops % 2 == 0 && this.loopType == LoopType.PingPong;
+                this.evaluation = isLoopEvenAndPingPong ? 0 : 1;
                 this.onTweenLoopBegin.Invoke(this.proxy);
             }
 
@@ -169,8 +169,8 @@ namespace Animate.Core.Internal.Concretes {
 
             this.evaluation = this.easeCurve?.Evaluate(this.progress) ?? this.progress;
 
-            if (this.loopType == LoopType.PingPong) {
-                this.evaluation = this.elapsedLoops % 2 == 0 ? this.evaluation : 1 - this.evaluation;
+            if (this.loopType == LoopType.PingPong && this.elapsedLoops % 2 == 0) {
+                this.evaluation = 1 - this.evaluation;
             }
 
             this.onTweenUpdate.Invoke(this.proxy);
