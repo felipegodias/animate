@@ -143,13 +143,13 @@ namespace Animate.Core.Internal.Concretes {
 
             this.elapsedTime += deltaTime;
 
-            float elapsedLoopsTime = this.time * this.elapsedLoops;
-            float elapsedLoopsDelay = this.loopDelay * this.elapsedLoops;
-            if (this.elapsedTime <= this.startDelay + elapsedLoopsTime + elapsedLoopsDelay) {
-                return;
-            }
-
             if (!this.hasLoopBegan) {
+                float elapsedLoopsTime = this.time * this.elapsedLoops;
+                float elapsedLoopsDelay = this.loopDelay * this.elapsedLoops;
+                if (this.elapsedTime <= this.startDelay + elapsedLoopsTime + elapsedLoopsDelay) {
+                    return;
+                }
+
                 this.hasLoopBegan = true;
                 this.progress = 0;
                 bool isLoopEvenAndPingPong = this.elapsedLoops % 2 == 0 && this.loopType == LoopType.PingPong;
