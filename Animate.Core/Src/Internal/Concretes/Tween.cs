@@ -169,7 +169,7 @@ namespace Animate.Core.Internal.Concretes {
 
             this.evaluation = this.easeCurve?.Evaluate(this.progress) ?? this.progress;
 
-            if (this.loopType == LoopType.PingPong && this.elapsedLoops % 2 == 0) {
+            if (this.loopType == LoopType.PingPong && this.elapsedLoops % 2 != 0) {
                 this.evaluation = 1 - this.evaluation;
             }
 
