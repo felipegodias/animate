@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Animate.Animations", "Anima
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Animate.EaseCurves.Editor", "Animate.EaseCurves.Editor\Animate.EaseCurves.Editor.csproj", "{0199667A-D9F2-42EC-9382-C093EFFDBBA6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Animate.Core.Editor", "Animate.Core.Editor\Animate.Core.Editor.csproj", "{DBBB204D-AAFB-4612-BEBD-441CC3752E10}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{0199667A-D9F2-42EC-9382-C093EFFDBBA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0199667A-D9F2-42EC-9382-C093EFFDBBA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0199667A-D9F2-42EC-9382-C093EFFDBBA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBBB204D-AAFB-4612-BEBD-441CC3752E10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBBB204D-AAFB-4612-BEBD-441CC3752E10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBBB204D-AAFB-4612-BEBD-441CC3752E10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBBB204D-AAFB-4612-BEBD-441CC3752E10}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
