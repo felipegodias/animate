@@ -1,5 +1,5 @@
 ﻿namespace Animate.Core.Editor.ScriptableObjects {
 
-    public class ScriptableObjectEditor : UnityEditor.Editor { }
+    public abstract class ScriptableObjectEditor : UnityEditor.Editor { }
 
 }
