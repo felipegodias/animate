@@ -46,6 +46,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Animate.Core.Editor\Animate.Core.Editor.csproj">
+      <Project>{dbbb204d-aafb-4612-bebd-441cc3752e10}</Project>
+      <Name>Animate.Core.Editor</Name>
+      <Private>False</Private>
+    </ProjectReference>
     <ProjectReference Include="..\Animate.EaseCurves\Animate.EaseCurves.csproj">
       <Project>{fdd92a7c-2d11-4b48-8586-fab5b1733a3e}</Project>
       <Name>Animate.EaseCurves</Name>
