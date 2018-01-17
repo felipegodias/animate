@@ -46,5 +46,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Src\ScriptableObjects\ScriptableObjectEditor.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\icon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
